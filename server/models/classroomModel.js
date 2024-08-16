@@ -5,9 +5,9 @@ const classroomSchema = new mongoose.Schema({
 	name: { type: String, required: true },
 	teacher: { type: String, required: true }, // teacher's email address
 	students: [String], // list of students
-	start: { type: Number, required: true }, // seconds from 0:00
+	start: { type: Number, required: true }, // minutes from 0:00
 	end: { type: Number, required: true },
-	days: [Number] // 0 = Sunday,.. 6 = Saturday
+	days: { type: [Number], required: true } // 0 = Sunday,.. 6 = Saturday
 }, { timestamps: true });
 
 module.exports = mongoose.model('classrooms', classroomSchema);
