@@ -9,10 +9,11 @@ const verifyToken = async (req, res, next) => {
 		token = token.split(' ')[1];
 		const decoded = jwt.verify(token, process.env.LOGIN_KEY);
 		
-		req.user = await users.findById(decoded.username, '_id').lean();
+		req.user = await users.findById(decoded.email, '_id').lean();
 		if (!req.user) throw 401;
 
-		req.user.username = req.user._id; delete req.user._id;
+		req.user.email = req.user._id; delete req.user._id;
+		req.user.type = decoded.type;
 		next();
 	} catch (e) {
 		let code = 401, message = "Invalid Token";
