@@ -8,3 +8,5 @@ const toNumber = (string) => {
 	let arr = string.split(":"); // arr[0] = hours, arr[1] = minutes
 	return arr[0] * 60 + Number(arr[1]);
 }
+
+module.exports = { toString, toNumber }
